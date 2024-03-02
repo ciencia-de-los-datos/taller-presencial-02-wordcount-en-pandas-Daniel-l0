@@ -20,7 +20,6 @@ def load_input(input_directory):
         pd.read_csv(filename, sep="\t", header=None, names=["text"])
         for filename in filenames
     ]
-
     concatenated_df = pd.concat(dataframes, ignore_index=True)
     return concatenated_df
 
@@ -31,7 +30,6 @@ def clean_text(dataframe):
     # Elimine la puntuación y convierta el texto a minúsculas.
     #
     dataframe = dataframe.copy()
-
     dataframe["text"]= dataframe["text"].str.lower()
     dataframe["text"] = dataframe["text"].str.replace(".","")
     dataframe["text"] = dataframe["text"].str.replace(",","")
