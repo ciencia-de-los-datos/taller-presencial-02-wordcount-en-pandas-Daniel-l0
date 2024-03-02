@@ -12,6 +12,7 @@ def load_input(input_directory):
     # un DataFrame de Pandas. Cada línea del archivo de texto debe ser una
     # entrada en el DataFrame.
     filenames = glob.glob(f"{input_directory}/*.txt")
+
     #dataframes = []
     #for filename in filenames:
         #dataframes.append(pd.read_csv(filenames[0], sep="/t", header=None, names=["text"]))
@@ -19,6 +20,7 @@ def load_input(input_directory):
         pd.read_csv(filename, sep="\t", header=None, names=["text"])
         for filename in filenames
     ]
+
     concatenated_df = pd.concat(dataframes, ignore_index=True)
     return concatenated_df
 
@@ -29,6 +31,7 @@ def clean_text(dataframe):
     # Elimine la puntuación y convierta el texto a minúsculas.
     #
     dataframe = dataframe.copy()
+
     dataframe["text"]= dataframe["text"].str.lower()
     dataframe["text"] = dataframe["text"].str.replace(".","")
     dataframe["text"] = dataframe["text"].str.replace(",","")
@@ -53,6 +56,7 @@ def count_words_(dataframe):
     dataframe["text"] = dataframe["text"].str.split()
     dataframe = dataframe.explode("text")
     dataframe = dataframe["text"].value_counts()
+    
     return dataframe
 
 
